@@ -271,7 +271,9 @@ public class Signup extends JFrame implements ActionListener{
                 Conn c = new Conn();
                 String query = "insert into signup values('" +formno+"','"+name+"','"+fname+"','"+dob+"','"+gender+"','"+email+"','"+maritalStatus+"','"+address+"','"+state+"','"+city+"','"+pincode+"')";
                 c.s.executeUpdate(query);
-                JOptionPane.showMessageDialog(null, "Date persisted successfully...");
+                JOptionPane.showMessageDialog(null, "Data persisted successfully..."); 
+                setVisible(false); 
+                new SignUpTwo(formno);
             }catch(Exception ex){
                 System.out.println(ex.getMessage()); 
             }
