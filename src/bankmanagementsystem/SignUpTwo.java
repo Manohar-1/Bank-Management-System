@@ -279,7 +279,8 @@ public class SignUpTwo extends JFrame implements ActionListener{
                 String query = "insert into additional values('" +formNumber+"','"+religion+"','"+category+"','"+income+"','"+education+"','"+occupation+"','"+aadharNo+"','"+seniorCitizen+"','"+existingAccount+"','"+panNumber+"')";
                 c.s.executeUpdate(query);
                 JOptionPane.showMessageDialog(null, "Additional Details persisted successfully..."); 
-                setVisible(false);
+                setVisible(false); 
+                new SignUpThree(formNumber);
             }catch(Exception ex){
                 System.out.println(ex.getMessage()); 
             }
