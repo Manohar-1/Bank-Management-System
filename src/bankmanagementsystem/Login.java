@@ -9,7 +9,8 @@ import java.awt.Font;
 import javax.swing.*;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.ActionListener; 
+import java.sql.ResultSet;
 public class Login extends JFrame implements ActionListener{ 
     JButton login,clear,SignUp; 
     JTextField cardNoText; 
@@ -18,9 +19,9 @@ public class Login extends JFrame implements ActionListener{
         setTitle("AUTOMATED TELLER MACHINE");
         setLayout(null);
         ImageIcon i1 = new ImageIcon(ClassLoader.getSystemResource("icons/bank6.png")); 
-        Image i2 = i1.getImage().getScaledInstance(80, 80, Image.SCALE_DEFAULT); 
-        
+        Image i2 = i1.getImage().getScaledInstance(100, 100, Image.SCALE_DEFAULT); 
         ImageIcon i3 = new ImageIcon(i2);
+        
         JLabel label1 = new JLabel(i3);  
         add(label1);
         label1.setBounds(70,10,100,100); 
@@ -88,7 +89,23 @@ public class Login extends JFrame implements ActionListener{
             cardNoText.setText(""); 
             pinText.setText("");
         }else if(e.getSource()==login){
+            Conn conn = new Conn(); 
             
+            String cardNumber = cardNoText.getText(); 
+            String pinNumber = pinText.getText(); 
+            
+            String query = "select * from login where accountNumber = '"+cardNumber+"' AND pinNumber = '"+pinNumber+"';"; 
+            
+            try{
+                ResultSet rs = conn.s.executeQuery(query); 
+                if(rs.next()){
+                    new Transactions(pinNumber);
+                }else{
+                    JOptionPane.showMessageDialog(null, "Incorrect card number or pin");
+                }
+            }catch(Exception ex){
+                System.out.println(ex.getMessage()); 
+            }
         }else if(e.getSource()==SignUp){
             setVisible(false); 
             new Signup();
