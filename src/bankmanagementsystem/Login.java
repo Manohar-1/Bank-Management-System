@@ -13,12 +13,12 @@ import java.awt.event.ActionListener;
 import java.sql.ResultSet;
 public class Login extends JFrame implements ActionListener{ 
     JButton login,clear,SignUp; 
-    JTextField cardNoText; 
+    JTextField accountNoText; 
     JPasswordField pinText;
-    Login(){
+    public Login(){
         setTitle("AUTOMATED TELLER MACHINE");
         setLayout(null);
-        ImageIcon i1 = new ImageIcon(ClassLoader.getSystemResource("icons/bank6.png")); 
+        ImageIcon i1 = new ImageIcon(ClassLoader.getSystemResource("icons/logo.jpg")); 
         Image i2 = i1.getImage().getScaledInstance(100, 100, Image.SCALE_DEFAULT); 
         ImageIcon i3 = new ImageIcon(i2);
         
@@ -36,10 +36,10 @@ public class Login extends JFrame implements ActionListener{
         cardno.setBounds(70,150,100,20); 
         add(cardno);
         
-        cardNoText = new JTextField(); 
-        cardNoText.setBounds(260, 150, 200, 25); 
-        cardNoText.setFont(new Font("Oswan",Font.PLAIN,14));
-        add(cardNoText);
+        accountNoText = new JTextField(); 
+        accountNoText.setBounds(200, 150, 300, 25); 
+        accountNoText.setFont(new Font("Oswan",Font.PLAIN,14));
+        add(accountNoText);
         
         JLabel pin = new JLabel("Pin");  
         pin.setFont(new Font("Osward",Font.BOLD,25));
@@ -47,29 +47,32 @@ public class Login extends JFrame implements ActionListener{
         add(pin); 
         
         pinText = new JPasswordField(); 
-        pinText.setBounds(260, 210, 200, 25); 
+        pinText.setBounds(200, 210, 300, 25); 
         add(pinText); 
         
         login = new JButton("Login"); 
-        login.setBounds(260, 250, 100, 25); 
+        login.setBounds(400, 250, 100, 25); 
         login.setBackground(Color.BLACK); 
         login.setForeground(Color.WHITE); 
-        login.addActionListener(this);
+        login.addActionListener(this); 
+        login.setBorder(BorderFactory.createEmptyBorder()); 
         add(login); 
         
         clear = new JButton("Clear"); 
-        clear.setBounds(360, 250, 100, 25); 
+        clear.setBounds(200, 250, 100, 25); 
         clear.setBackground(Color.BLACK); 
         clear.setForeground(Color.WHITE);
         clear.addActionListener(this);
+        clear.setBorder(BorderFactory.createEmptyBorder()); 
         add(clear);  
         
         
         SignUp = new JButton("Sign Up"); 
-        SignUp.setBounds(260, 300, 200, 25); 
+        SignUp.setBounds(200, 300, 300, 25); 
         SignUp.setBackground(Color.BLACK); 
         SignUp.setForeground(Color.WHITE);
         SignUp.addActionListener(this);
+        SignUp.setBorder(BorderFactory.createEmptyBorder()); 
         add(SignUp);  
         
          
@@ -86,26 +89,31 @@ public class Login extends JFrame implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource()== clear){
-            cardNoText.setText(""); 
+            accountNoText.setText(""); 
             pinText.setText("");
         }else if(e.getSource()==login){
             Conn conn = new Conn(); 
             
-            String cardNumber = cardNoText.getText(); 
+            String accountNumber = accountNoText.getText(); 
             String pinNumber = pinText.getText(); 
             
-            String query = "select * from login where accountNumber = '"+cardNumber+"' AND pinNumber = '"+pinNumber+"';"; 
+            String query = "select * from accountDetails where accountNumber = '"+accountNumber+"' AND pinNumber = '"+pinNumber+"';"; 
             
             try{
                 ResultSet rs = conn.s.executeQuery(query); 
-                if(rs.next()){
-                    new Transactions(pinNumber);
+                if(rs.next()){ 
+                    System.out.println(rs.getString("accountNumber")+" "+rs.getString("pinNumber"));
+                    new Transactions(accountNumber);
                 }else{
                     JOptionPane.showMessageDialog(null, "Incorrect card number or pin");
                 }
+                conn.s.close();
+                conn.close();
             }catch(Exception ex){
-                System.out.println(ex.getMessage()); 
-            }
+                JOptionPane.showMessageDialog(null, ex.getMessage());
+            } 
+            
+            
         }else if(e.getSource()==SignUp){
             setVisible(false); 
             new Signup();

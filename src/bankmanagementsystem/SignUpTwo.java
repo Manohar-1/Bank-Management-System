@@ -226,63 +226,64 @@ public class SignUpTwo extends JFrame implements ActionListener{
             
             try{
                 if(religion.equals("--")){
-                    JOptionPane.showMessageDialog(null, "Religion cannot be null"); 
+                    
                     throw new Exception("Please select your religion");
                 }
                 
                 if(category.equals("--")){
-                    JOptionPane.showMessageDialog(null,"Category cannot be null"); 
+                    
                     throw new Exception("Category is mandatory"); 
                 }
                 
                 if(income.equals("--")){
-                    JOptionPane.showMessageDialog(null,"Income cannot be null"); 
+                   
                     throw new Exception("Income is mandatory"); 
                 }
                 
                 if(education.equals("--")){
-                    JOptionPane.showMessageDialog(null, "education cannot be null");
+                    
                     throw new Exception("education cannot be null"); 
                 }
                 
                 if(occupation.equals("--")){
-                    JOptionPane.showMessageDialog(null,"occupation cannot be null"); 
+                    
                     throw new Exception("occupation cannot be null");
                 }
                 
                 if(seniorCitizen ==null){
-                    JOptionPane.showMessageDialog(null,"Please select your marital staus"); 
+                   
                     throw new Exception("Please select your marital staus");
                 }
                 
                 if(aadharNo.equals("")){
-                    JOptionPane.showMessageDialog(null,"Aadhar number cannot be null"); 
+                    
                     throw new Exception("aadhaar number cannot be null");
                 }
                 
                 if(seniorCitizen.equals("")){
-                    JOptionPane.showMessageDialog(null,"Please select a valid option for senior citizen"); 
+                   
                     throw new Exception("Senior citzen not selected.");
                 }
                 
                 if(existingAccount.equals("")){
-                    JOptionPane.showMessageDialog(null,"Please select a valid option for existingAccount"); 
+
                     throw new Exception("existingAccount not selected.");
                 }
                 
                 if(panNumber.equals("")){
-                    JOptionPane.showMessageDialog(null,"PanNumber field cannot be null"); 
                     throw new Exception("PanNumber field cannot be null");
                 }
                 
                 Conn c = new Conn();
                 String query = "insert into additional values('" +formNumber+"','"+religion+"','"+category+"','"+income+"','"+education+"','"+occupation+"','"+aadharNo+"','"+seniorCitizen+"','"+existingAccount+"','"+panNumber+"')";
                 c.s.executeUpdate(query);
-                JOptionPane.showMessageDialog(null, "Additional Details persisted successfully..."); 
-                setVisible(false); 
+                JOptionPane.showMessageDialog(null, "Additional Details persisted successfully...");  
+                c.s.close(); 
+                c.close();
+                setVisible(false);  
                 new SignUpThree(formNumber);
             }catch(Exception ex){
-                System.out.println(ex.getMessage()); 
+                JOptionPane.showMessageDialog(null, ex.getMessage());
             }
             
             

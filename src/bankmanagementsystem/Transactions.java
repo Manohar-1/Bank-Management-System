@@ -9,13 +9,15 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-
+import java.sql.ResultSet;
+import javax.swing.BorderFactory;
+import javax.swing.JOptionPane;
 public class Transactions extends JFrame implements ActionListener{ 
     
     JButton depositButton,fastCashButton,pinChangeButton,cashWithDrawalButton,miniStatementButton,balanceEnquiryButton,exitButton;
-    String pinNumber; 
-    public Transactions(String pinNumber){
-        this.pinNumber = pinNumber;
+    String accountNumber; 
+    public Transactions(String accountNumber){
+        this.accountNumber = accountNumber;
         setLayout(null); 
         
         ImageIcon i1 = new ImageIcon(ClassLoader.getSystemResource("icons/atm.jpg")); 
@@ -33,32 +35,45 @@ public class Transactions extends JFrame implements ActionListener{
         l1.add(heading);
         
         depositButton = new JButton("Deposit"); 
-        depositButton.setBounds(125,345,120,25); 
+        depositButton.setBounds(125,345,120,25);  
+        depositButton.addActionListener(this); 
+        depositButton.setBorder(BorderFactory.createEmptyBorder());
         l1.add(depositButton);
         
         fastCashButton = new JButton("Fast Cash"); 
-        fastCashButton.setBounds(125,380,120,25); 
+        fastCashButton.setBounds(125,375,120,25); 
+        fastCashButton.addActionListener(this);
+        fastCashButton.setBorder(BorderFactory.createEmptyBorder());
         l1.add(fastCashButton);
         
         pinChangeButton = new JButton("Pin Change"); 
-        pinChangeButton.setBounds(125,415,120,25); 
+        pinChangeButton.setBounds(125,405,120,25);
+        pinChangeButton.addActionListener(this);
+        pinChangeButton.setBorder(BorderFactory.createEmptyBorder());
         l1.add(pinChangeButton);
         
         cashWithDrawalButton = new JButton("Cash Withdraw"); 
         cashWithDrawalButton.setBounds(260,345,140,25); 
+        cashWithDrawalButton.addActionListener(this); 
+        cashWithDrawalButton.setBorder(BorderFactory.createEmptyBorder());
         l1.add(cashWithDrawalButton);
         
         balanceEnquiryButton = new JButton("Balance Enquiry"); 
-        balanceEnquiryButton.setBounds(260,375,140,25); 
+        balanceEnquiryButton.setBounds(260,375,140,25);  
+        balanceEnquiryButton.addActionListener(this);
+        balanceEnquiryButton.setBorder(BorderFactory.createEmptyBorder());
         l1.add(balanceEnquiryButton); 
         
         miniStatementButton = new JButton("Mini Statement"); 
-        miniStatementButton.setBounds(260,405,140,25); 
+        miniStatementButton.setBounds(260,405,140,25);  
+        miniStatementButton.addActionListener(this);
+        miniStatementButton.setBorder(BorderFactory.createEmptyBorder());
         l1.add(miniStatementButton); 
         
         exitButton = new JButton("Exit"); 
         exitButton.setBounds(260,435,140,25); 
         exitButton.addActionListener(this);
+        exitButton.setBorder(BorderFactory.createEmptyBorder());
         l1.add(exitButton);
         
         
@@ -81,17 +96,35 @@ public class Transactions extends JFrame implements ActionListener{
          }
          
          if(ae.getSource()==depositButton){
-             
+             setVisible(false); 
+             new Deposit(accountNumber); 
          }else if(ae.getSource()==fastCashButton){
-             
+             setVisible(false); 
+             new FastCash(accountNumber);
          }else if(ae.getSource()==pinChangeButton){
-             
+             setVisible(false); 
+             new ChangePin(accountNumber); 
          }else if(ae.getSource()==cashWithDrawalButton){
-             
+             setVisible(false);  
+             new WithDrawal(accountNumber);
          }else if(ae.getSource()==miniStatementButton){
              
          }else if(ae.getSource()==balanceEnquiryButton){
-             
+             Conn conn = new Conn(); 
+             String query = "select balance from bankAccount where accountNumber = '"+accountNumber+"'";
+             try{
+                 ResultSet rs = conn.s.executeQuery(query);  
+                 String balance = ""; 
+                 if(rs.next()){
+                     balance = rs.getString("balance");   
+                 }else{
+                     throw new Exception("Something went wrong");
+                 }
+                               
+                 JOptionPane.showMessageDialog(null,"Your current balance is "+balance+"Rs/-");
+             }catch(Exception ex){
+                 JOptionPane.showMessageDialog(null,ex.getMessage()); 
+             }
          }
     }
 }
