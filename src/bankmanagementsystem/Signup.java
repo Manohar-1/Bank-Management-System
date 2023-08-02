@@ -219,63 +219,65 @@ public class Signup extends JFrame implements ActionListener{
             
             try{
                 if(name.equals("")){
-                    JOptionPane.showMessageDialog(null, "Name is required"); 
+                    
                     throw new Exception("Name is required");
                 }
                 
                 if(fname.equals("")){
-                    JOptionPane.showMessageDialog(null,"Father name cannot be null"); 
+                    
                     throw new Exception("Father name cannot be null"); 
                 }
                 
                 if(gender == null){
-                    JOptionPane.showMessageDialog(null,"Please select your gender"); 
+                   
                     throw new Exception("Gender is not selected"); 
                 }
                 
                 if(dob.equals("")){
-                    JOptionPane.showMessageDialog(null, "Please select the date from the calendar");
+                    
                     throw new Exception("Date of Birth required"); 
                 }
                 
                 if(email.equals("")){
-                    JOptionPane.showMessageDialog(null,"Enter your email"); 
+                    
                     throw new Exception("Enter your email");
                 }
                 
                 if(maritalStatus ==null){
-                    JOptionPane.showMessageDialog(null,"Please select your marital staus"); 
+                    
                     throw new Exception("Please select your marital staus");
                 }
                 
                 if(address.equals("")){
-                    JOptionPane.showMessageDialog(null,"Please enter your address..."); 
+                    
                     throw new Exception("Address field cannot be null");
                 }
                 
                 if(city.equals("")){
-                    JOptionPane.showMessageDialog(null,"City field cannot be null"); 
+                    
                     throw new Exception("City field cannot be null");
                 }
                 
                 if(state.equals("")){
-                    JOptionPane.showMessageDialog(null,"State field cannot be null"); 
+                    
                     throw new Exception("State field cannot be null");
                 }
                 
                 if(pincode.equals("")){
-                    JOptionPane.showMessageDialog(null,"Pincode field cannot be null"); 
+                  
                     throw new Exception("Pincode field cannot be null");
                 }
                 
                 Conn c = new Conn();
                 String query = "insert into signup values('" +formno+"','"+name+"','"+fname+"','"+dob+"','"+gender+"','"+email+"','"+maritalStatus+"','"+address+"','"+state+"','"+city+"','"+pincode+"')";
                 c.s.executeUpdate(query);
-                JOptionPane.showMessageDialog(null, "Data persisted successfully..."); 
+                JOptionPane.showMessageDialog(null, "Data persisted successfully...");  
+                c.s.close(); 
+                c.close();
                 setVisible(false); 
                 new SignUpTwo(formno);
             }catch(Exception ex){
-                System.out.println(ex.getMessage()); 
+                JOptionPane.showMessageDialog(null,ex.getMessage()); 
             }
             
             

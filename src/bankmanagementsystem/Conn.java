@@ -26,11 +26,11 @@ public class Conn {
         }
     } 
     
-//    public static void close(){ 
-//        try {
-//            c.close();
-//        } catch (SQLException ex) {
-//            Logger.getLogger(Conn.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//    }
+    public void close(){ 
+        try {
+            c.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(Conn.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 }

@@ -18,8 +18,9 @@ public class SignUpThree extends JFrame implements ActionListener{
     JCheckBox c1,c2,c3,c4,c5,c6,c7;
     JButton next,cancel; 
     String formNo;
+    String initialBalance = "500"; 
     public SignUpThree(String formNo){  
-        this.formNo = "5353"; 
+        this.formNo = formNo; 
         setLayout(null);
         
         JLabel l1 = new JLabel("Page 3: Account Details"); 
@@ -248,15 +249,17 @@ public class SignUpThree extends JFrame implements ActionListener{
                     }
                     
                     String query1 = "insert into accountdetails values('"+formNo+ "','"+accountType+"','"+cardNumber+"','"+pinNumber+"','"+facility+"')";
-                    String query2 = "insert into login values('"+cardNumber+"','"+pinNumber+"')"; 
+                    String query2 = "insert into bankAccount values('"+cardNumber+"','"+pinNumber+"','"+initialBalance+"')"; 
                     
                     Conn connection = new Conn();  
                     connection.s.executeUpdate(query1); 
                     connection.s.executeUpdate(query2);     
-                    
+                    connection.s.close(); 
+                    connection.close(); 
                     JOptionPane.showMessageDialog(null,"card Number:"+cardNumber+"\npin Number:"+pinNumber);
                     System.out.println("Data persisted successfully..."); 
-                    setVisible(false);
+                    setVisible(false); 
+                    
                 }catch(Exception ex){
                     System.out.println(ex.getMessage());
                 }
