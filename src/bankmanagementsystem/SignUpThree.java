@@ -216,39 +216,45 @@ public class SignUpThree extends JFrame implements ActionListener{
                 long pinLongVariable = Math.abs(random.nextLong() % 10000L); 
                 pinNumber += pinLongVariable; 
                 
-                String facility = ""; 
+                StringBuilder facility = new StringBuilder(""); 
                 
                 if(c1.isSelected()){
-                    facility+="ATM Card"; 
-                }else if(c2.isSelected()){
-                    facility+="Internet Banking"; 
-                }else if(c3.isSelected()){
-                    facility+="Mobile Banking"; 
-                }else if(c4.isSelected()){
-                    facility+="Email & SMS Alerts"; 
-                }else if(c5.isSelected()){
-                    facility+="Cheque Book"; 
-                }else if(c6.isSelected()){
-                    facility+="E-Statement"; 
+                     facility.append("ATM Card,");
+                }
+                if(c2.isSelected()){
+                    facility.append("Internet Banking,");
+                }
+                if(c3.isSelected()){
+                    facility.append("Mobile Banking,");
+                }
+                if(c4.isSelected()){
+                    facility.append("Email & SMS Alerts,");
                 }
                 
+                if(c5.isSelected()){
+                    facility.append("Cheque Book,");
+                }
+                
+                if(c6.isSelected()){
+                    facility.append("E-Statement");
+                }
+                
+                if(facility.charAt(facility.length()-1)==','){
+                    facility.deleteCharAt(facility.length()-1); 
+                }
                 
                 try{ 
                     if(accountType.equals("")){
-                       JOptionPane.showMessageDialog(null, "Account Type Cannot Be Null"); 
                        throw new Exception("Account Type Cannot be null"); 
                     }else if(cardNumber.equals("")){
-                       JOptionPane.showMessageDialog(null, "Card Number Cannot Be Null"); 
                        throw new Exception("Card Number Cannot Be Null");  
                     }else if(pinNumber.equals("")){
-                       JOptionPane.showMessageDialog(null, "pinNumber Cannot Be Null"); 
                        throw new Exception("pinNumber Cannot Be Null");   
                     }else if(facility.equals("")){
-                        JOptionPane.showMessageDialog(null, "facility Cannot Be Null"); 
-                        throw new Exception("facility Cannot Be Null");   
+                       throw new Exception("facility Cannot Be Null");   
                     }
                     
-                    String query1 = "insert into accountdetails values('"+formNo+ "','"+accountType+"','"+cardNumber+"','"+pinNumber+"','"+facility+"')";
+                    String query1 = "insert into accountdetails values('"+formNo+ "','"+accountType+"','"+cardNumber+"','"+pinNumber+"','"+facility.toString()+"')";
                     String query2 = "insert into bankAccount values('"+cardNumber+"','"+pinNumber+"','"+initialBalance+"')"; 
                     
                     Conn connection = new Conn();  
@@ -258,10 +264,11 @@ public class SignUpThree extends JFrame implements ActionListener{
                     connection.close(); 
                     JOptionPane.showMessageDialog(null,"card Number:"+cardNumber+"\npin Number:"+pinNumber);
                     System.out.println("Data persisted successfully..."); 
-                    setVisible(false); 
                     
+                    setVisible(false); 
+                    new Login();
                 }catch(Exception ex){
-                    System.out.println(ex.getMessage());
+                    JOptionPane.showMessageDialog(null, ex.getMessage());
                 }
                 
                 
