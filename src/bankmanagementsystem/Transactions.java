@@ -108,23 +108,10 @@ public class Transactions extends JFrame implements ActionListener{
              setVisible(false);  
              new WithDrawal(accountNumber);
          }else if(ae.getSource()==miniStatementButton){
-             
+             new Ministatement(accountNumber);
          }else if(ae.getSource()==balanceEnquiryButton){
-             Conn conn = new Conn(); 
-             String query = "select balance from bankAccount where accountNumber = '"+accountNumber+"'";
-             try{
-                 ResultSet rs = conn.s.executeQuery(query);  
-                 String balance = ""; 
-                 if(rs.next()){
-                     balance = rs.getString("balance");   
-                 }else{
-                     throw new Exception("Something went wrong");
-                 }
-                               
-                 JOptionPane.showMessageDialog(null,"Your current balance is "+balance+"Rs/-");
-             }catch(Exception ex){
-                 JOptionPane.showMessageDialog(null,ex.getMessage()); 
-             }
+             setVisible(false); 
+             new BalanceEnquiry(accountNumber);
          }
     }
 }
