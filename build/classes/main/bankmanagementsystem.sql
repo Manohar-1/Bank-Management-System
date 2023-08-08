@@ -31,7 +31,7 @@ CREATE TABLE accountdetails (
   accountType VARCHAR(40) NOT NULL,
   accountNumber VARCHAR(20) NOT NULL,
   opinumber VARCHAR(5) NOT NULL,
-  serviceRequired VARCHAR(40) NOT NULL
+  serviceRequired VARCHAR(255) NOT NULL
 );
 
 CREATE TABLE bankaccount (
