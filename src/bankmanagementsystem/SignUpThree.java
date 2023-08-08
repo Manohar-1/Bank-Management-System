@@ -191,7 +191,7 @@ public class SignUpThree extends JFrame implements ActionListener{
         }  
         
         if(e.getSource()==cancel){
-            
+            setVisible(false);
         }else if(e.getSource()==next){
            
                 String accountType = ""; 
