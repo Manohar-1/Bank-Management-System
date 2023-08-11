@@ -13,7 +13,7 @@ Bank Management System is a Java application that allows users to manage their b
 
 
 ## 🪶Features
-
+NOTE: This section is under development...
 #### Login 
 #### Signup 
 #### Deposit
@@ -31,6 +31,10 @@ Bank Management System is a Java application that allows users to manage their b
 ## ER-Diagram
 
 ![ER-Diagram](https://lh3.googleusercontent.com/pw/AIL4fc-remUk28Sg-2cJ0DEK9FExr84dn4wm-2uDFRZ7viNTccu_ciKjOKT_gtoa_hwwgaCV0KuyMmHwpnrFfIY2qRyiLo14g_brEc_GwVUk6cRmJabas-aBV-w3A-qft1-4FIYKGLMVjJQuYYVWRkUcN3L6a8HlhhKS7nJbS5fwHICE8rGSJqlCeTXD9eiqyXhW8_UHPPRjJkNXWb8WfUmnfmTGBMPNY-VZ6Raq4OUFiDUJdR9j_1iR1JFtIGH5be7Pc3pO8yoYCTFat-uc9fUtWQUEZHRLL9AA-5H0HLf4YB5GdgvteO69wCdoRmGD35Xx-CMNaslqoDrt8ZyxbBmhQH0ZI2Q0ryZsCFBctWAWn6_mM2ogec5i6eNA3unDAqV6G2NDdJtHA3e5G5fwJq20hlcX9p2-fLYYRuGHilqDhpom5H3qxhNmlqtB-uDFEqvbNFPcVokr-lo0wS4WZMvuUBTuJdXJo5R8PQl0E5qmKvj7Fefok7_ri3nAj2YwmezjWXg2A6tLOINDmwb42gOwFyPXBnVv6X5oBEFpG5eDgVPeczfAzMShcKEoyu0g9NeVRvt20kAkTUAw9N6rFGHmtkFMp0xIFoaN0t87JMYAzWIJ46EfYBmqrFwg7MtQfb1EyHvqkS4j7VOZmNw8iwWmFK_OIpVDyW7_NjiBBRxnAfU21Pf4RcYtFyB3WXOfxPiStHkElY9ujoDF_pkmCtPKWj08zS-0l1nwPdPtunJUBGxPTJ4FBJ4ZMXeWijY9utGcCe6anJGsC_WYsNWG3-kw1XII57__Pzg0KrYrcHM_BEt2uCGLRE-WG4EmV7yNyeu211_as009varjpTS23DFIB3xyYVvRtUceB3A9gPfIi0xWGWKsKxc7cOU6SY3TEy4AX97D-FX5ss-nLxoWa1I-22cohqJCroUViL_imyKB0EqzSBDFwYKiAsY08xs7dY3YO0oOBABjXXauNOzLl4FpRYJBEBws4N5h1A=w650-h465-no?authuser=0)
+
+## Credits
+[![Code_With_Interview](https://img.shields.io/badge/Code_With_Interview-20B63A?style=for-the-badge)](https://www.youtube.com/@codeforinterview)
+
 ## Feedback
 
 Feel free to give your feedback on this project to mudhapakamanohar@gmail.com 
