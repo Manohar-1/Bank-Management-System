@@ -10,6 +10,7 @@ Bank Management System is a Java application that allows users to manage their b
 ![Swing](https://img.shields.io/badge/Swing-20B2AA?style=for-the-badge)
 ![MySQL](https://img.shields.io/badge/MySQL-92B2AA?style=for-the-badge)
 ![JDBC](https://img.shields.io/badge/JDBC-2054AA?style=for-the-badge)
+![NetBeans](https://img.shields.io/badge/NetBeans-2092AA?style=for-the-badge)
 
 
 ## 🪶Features
